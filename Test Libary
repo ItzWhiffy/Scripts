@@ -1,0 +1,158 @@
+local WindowTable = {}
+
+function WindowTable:CreateWindow()
+    local MainFrame = Instance.new("Frame")
+    local mainCorner = Instance.new("UICorner")
+    local SideBar = Instance.new("Frame")
+    local sideCorner = Instance.new("UICorner")
+    local allTabs = Instance.new("Frame")
+    local tabsCorner = Instance.new("UICorner")
+    local hubLabel = Instance.new("TextLabel")
+    local gameLabel = Instance.new("TextLabel")
+    local playerImage = Instance.new("ImageLabel")
+    local playerCorner = Instance.new("UICorner")
+    local allPages = Instance.new("Frame")
+    local pagesCorner = Instance.new("UICorner")
+
+    MainFrame.Name = "MainFrame"
+    MainFrame.Parent = game.StarterGui.Tutorial
+    MainFrame.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    MainFrame.BorderColor3 = Color3.fromRGB(68, 68, 68)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Position = UDim2.new(0.268056571, 0, 0.267484665, 0)
+    MainFrame.Size = UDim2.new(0, 623, 0, 379)
+
+    mainCorner.Name = "mainCorner"
+    mainCorner.Parent = MainFrame
+
+    SideBar.Name = "SideBar"
+    SideBar.Parent = MainFrame
+    SideBar.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    SideBar.BorderSizePixel = 0
+    SideBar.Size = UDim2.new(0, 209, 0, 379)
+
+    sideCorner.Name = "sideCorner"
+    sideCorner.Parent = SideBar
+
+    allTabs.Name = "allTabs"
+    allTabs.Parent = SideBar
+    allTabs.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    allTabs.BorderSizePixel = 0
+    allTabs.Position = UDim2.new(0, 0, 7.4505806e-09, 0)
+    allTabs.Size = UDim2.new(0, 209, 0, 379)
+
+    tabsCorner.Name = "tabsCorner"
+    tabsCorner.Parent = allTabs
+
+    hubLabel.Name = "hubLabel"
+    hubLabel.Parent = SideBar
+    hubLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    hubLabel.BackgroundTransparency = 1.000
+    hubLabel.BorderSizePixel = 0
+    hubLabel.Position = UDim2.new(0.377990425, 0, 0.0791556761, 0)
+    hubLabel.Size = UDim2.new(0, 125, 0, 25)
+    hubLabel.Font = Enum.Font.GothamSemibold
+    hubLabel.Text = "Display Name"
+    hubLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    hubLabel.TextSize = 15.000
+    hubLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    gameLabel.Name = "gameLabel"
+    gameLabel.Parent = SideBar
+    gameLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    gameLabel.BackgroundTransparency = 1.000
+    gameLabel.Position = UDim2.new(0.377990425, 0, 0.113456458, 0)
+    gameLabel.Size = UDim2.new(0, 125, 0, 25)
+    gameLabel.Font = Enum.Font.SourceSans
+    gameLabel.Text = "Game Name"
+    gameLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    gameLabel.TextSize = 15.000
+    gameLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    playerImage.Name = "playerImage"
+    playerImage.Parent = SideBar
+    playerImage.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    playerImage.BackgroundTransparency = 1.000
+    playerImage.BorderColor3 = Color3.fromRGB(32, 32, 32)
+    playerImage.Position = UDim2.new(0.0670000017, 0, 0.0500000007, 0)
+    playerImage.Size = UDim2.new(0, 60, 0, 60)
+    playerImage.Image = "rbxasset://textures/ui/GuiImagePlaceholder.png"
+
+    playerCorner.CornerRadius = UDim.new(1, 0)
+    playerCorner.Name = "playerCorner"
+    playerCorner.Parent = playerImage
+
+    allPages.Name = "allPages"
+    allPages.Parent = MainFrame
+    allPages.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+    allPages.BorderSizePixel = 0
+    allPages.Position = UDim2.new(0.335000008, 0, 0, 0)
+    allPages.Size = UDim2.new(0, 414, 0, 379)
+
+    pagesCorner.Name = "pagesCorner"
+    pagesCorner.Parent = allPages
+
+    local TabHandler = {}
+
+    function TabHandler:CreateTab(tabname)
+        tabname = tabname or "New Tab"
+        local tabButton = Instance.new("TextButton")
+        local tabCorner = Instance.new("UICorner")
+        local tabPadding = Instance.new("UIPadding")
+        local newPage = Instance.new("Frame")
+        local pageCorner = Instance.new("UICorner")
+        local elementListing = Instance.new("UIListLayout")
+
+        tabButton.Name = "tabButton"
+        tabButton.Parent = allTabs
+        tabButton.BackgroundColor3 = Color3.fromRGB(47, 47, 47)
+        tabButton.Position = UDim2.new(0.0669856444, 0, 0.250659645, 0)
+        tabButton.Size = UDim2.new(0, 181, 0, 35)
+        tabButton.Font = Enum.Font.GothamSemibold
+        tabButton.Text = tabname
+        tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        tabButton.TextSize = 15.000
+        tabButton.TextXAlignment = Enum.TextXAlignment.Left
+        tabButton.MouseButton1Click:Connect(function()
+            for i,v in next, allPages:GetChildren() do
+                v.Visible = false
+            end
+            newPage.Visible = true
+
+            for i,v in next, allTabs:GetChildren() do
+                if v:IsA("TextButton") then
+                    game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+                        BackgroundColor3 = Color3.fromRGB(115, 49, 37)
+                    }):Play()
+                end
+            end
+            game.TweenService:Create(tabButton, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+                BackgroundColor3 = Color3.fromRGB(255, 109, 83)
+            }):Play()
+        end)
+    
+        tabCorner.Parent = tabButton
+    
+        tabPadding.Parent = tabButton
+        tabPadding.PaddingLeft = UDim.new(0, 7)
+
+        newPage.Name = "newPage"
+        newPage.Parent = allPages
+        newPage.BackgroundColor3 = Color3.fromRGB(32, 32, 32)
+        newPage.BorderColor3 = Color3.fromRGB(27, 42, 53)
+        newPage.BorderSizePixel = 0
+        newPage.Position = UDim2.new(-0.000275284052, 0, 0, 0)
+        newPage.Size = UDim2.new(0, 414, 0, 379)
+    
+        pageCorner.Name = "pageCorner"
+        pageCorner.Parent = newPage
+    
+        elementListing.Name = "elementListing"
+        elementListing.Parent = newPage
+        elementListing.SortOrder = Enum.SortOrder.LayoutOrder
+    end
+
+    return TabHandler
+end
+
+return WindowTable
