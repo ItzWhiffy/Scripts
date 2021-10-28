@@ -1,6 +1,6 @@
 local WindowTable = {}
 
-function WindowTable:CreateWindow()
+function WindowTable:CreateWindow(name, gamename)
     local MainFrame = Instance.new("Frame")
     local mainCorner = Instance.new("UICorner")
     local SideBar = Instance.new("Frame")
@@ -52,7 +52,7 @@ function WindowTable:CreateWindow()
     hubLabel.Position = UDim2.new(0.377990425, 0, 0.0791556761, 0)
     hubLabel.Size = UDim2.new(0, 125, 0, 25)
     hubLabel.Font = Enum.Font.GothamSemibold
-    hubLabel.Text = "Display Name"
+    hubLabel.Text = name
     hubLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
     hubLabel.TextSize = 15.000
     hubLabel.TextXAlignment = Enum.TextXAlignment.Left
@@ -64,7 +64,7 @@ function WindowTable:CreateWindow()
     gameLabel.Position = UDim2.new(0.377990425, 0, 0.113456458, 0)
     gameLabel.Size = UDim2.new(0, 125, 0, 25)
     gameLabel.Font = Enum.Font.SourceSans
-    gameLabel.Text = "Game Name"
+    gameLabel.Text = gamename
     gameLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
     gameLabel.TextSize = 15.000
     gameLabel.TextXAlignment = Enum.TextXAlignment.Left
